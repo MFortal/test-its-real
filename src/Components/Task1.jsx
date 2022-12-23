@@ -4,10 +4,6 @@ function Task1() {
   const [value, setValue] = useState("");
   const [state, setState] = useState("");
 
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
-
   const handleSubmit = (event) => {
     setState({ value: value, count: calculateCurrentBrackets(value) });
 
@@ -48,7 +44,11 @@ function Task1() {
       <form onSubmit={handleSubmit}>
         <label>
           Введите строку:
-          <input type="text" value={value} onChange={handleChange} />
+          <input
+            type="text"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+          />
         </label>
         <input type="submit" value="Отправить" />
       </form>
