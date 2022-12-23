@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 function Task2() {
   const [state, setState] = useState([]);
 
   const addTask = () => {
     const newTask = {
-      id: !state[state.length - 1] ? 0 : state[state.length - 1].id + 1,
+      id: uuidv4(),
       time: randomInteger(10, 30),
-      flag: true,
     };
     setState((prevState) => [...prevState, newTask]);
   };
@@ -18,19 +18,21 @@ function Task2() {
   };
 
   useEffect(() => {
-    const interval = setInterval(
-      () =>
-        setState((prev) =>
-          prev.map(function (task) {
-            return {
-              id: task.id,
-              flag: task.time < 0 ? false : true,
-              time: task.time--,
-            };
-          })
-        ),
-      1000
-    );
+    const interval = setInterval(() => {
+      setState((prev) => {
+        let newState = [];
+        for (let i = 0; i < prev.length; i++) {
+          if (prev[i].time < 0) continue;
+
+          newState.push({
+            id: prev[i].id,
+            time: prev[i].time--,
+          });
+        }
+
+        return newState;
+      });
+    }, 1000);
     return () => {
       clearInterval(interval);
     };
@@ -40,11 +42,9 @@ function Task2() {
     <>
       <button onClick={addTask}>Добавить новую задачку</button>
       <ol>
-        {state.map((task) =>
-          task.flag ? (
-            <li key={task.id}>Исчезнет через {task.time} секунд</li>
-          ) : null
-        )}
+        {state.map((task) => (
+          <li key={task.id}>Исчезнет через {task.time} секунд</li>
+        ))}
       </ol>
     </>
   );
