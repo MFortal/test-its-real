@@ -17,22 +17,16 @@ function Task1() {
 
     let stek = [];
     let count = 0;
-    let newStr = "";
-
-    // Оставление в строке только скобок
-    for (let i = 0; i < str.length; i++) {
-      if (leftBrackets.includes(str[i]) || rightBrackets.includes(str[i]))
-        newStr += str[i];
-    }
-    str = newStr;
 
     // Добавление/удаление в стек скобок и подсчет количества
     for (let i = 0; i < str.length; i++) {
+      if (!(leftBrackets.includes(str[i]) || rightBrackets.includes(str[i])))
+        continue;
+
       if (leftBrackets.includes(str[i])) {
         stek.push(str[i]);
       } else {
         const index = rightBrackets.findIndex((item) => item === str[i]);
-
         if (stek[stek.length - 1] === leftBrackets[index]) {
           stek.pop();
           count += 2;
