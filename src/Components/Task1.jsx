@@ -34,23 +34,37 @@ function Task1() {
 
   const output = (
     <>
-      <p>Введенная строка: {state.value} </p>
-      <p>Количество правильных скобочек: {state.count}</p>
+      <div>
+        <p>Введенная строка: {state.value} </p>
+        <p>Количество правильных скобочек: {state.count}</p>
+      </div>
     </>
   );
 
   return (
     <>
+      <h2>Задача 1</h2>
+      <div>
+        Дана строка, содержащая скобки трёх видов (круглые, квадратные и
+        фигурные) и любые другие символы. Посчитайте сколько скобок расставлено
+        корректно а сколько нет.
+      </div>
       <form onSubmit={handleSubmit}>
-        <label>
-          Введите строку:
+        <div class="text-field">
+          <label class="text-field__label" for="brackets">
+            Скобочки
+          </label>
           <input
+            class="text-field__input"
             type="text"
+            name="brackets"
             value={value}
             onChange={(e) => setValue(e.target.value)}
           />
-        </label>
-        <input type="submit" value="Отправить" />
+        </div>
+        <button type="submit" class="btn">
+          Отправить
+        </button>
       </form>
       {state ? output : null}
     </>

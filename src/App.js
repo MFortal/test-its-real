@@ -5,9 +5,12 @@ import Task2 from "./Components/Task2";
 function App() {
   return (
     <>
-      <Task1 />
-      <hr />
-      <Task2 />
+      <section class="task-section">
+        <Task1 />
+      </section>
+      <section class="task-section">
+        <Task2 />
+      </section>
     </>
   );
 }

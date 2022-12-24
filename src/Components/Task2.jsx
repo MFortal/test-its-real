@@ -40,10 +40,20 @@ function Task2() {
 
   return (
     <>
-      <button onClick={addTask}>Добавить новую задачку</button>
+      <h2>Задача 2</h2>
+      <div>
+        Каждый добавленный элемент, должен находится в нем случайное количество
+        секунд от 10 до 30. При исчезновении во всем списке пересчитывается
+        порядковый номер.
+      </div>
+      <button onClick={addTask} class="btn">
+        Добавить новую задачку
+      </button>
       <ol>
         {state.map((task) => (
-          <li key={task.id}>Исчезнет через {task.time} секунд</li>
+          <li key={task.id} class={task.time < 4 ? "fade" : ""}>
+            Исчезнет через {task.time} секунд
+          </li>
         ))}
       </ol>
     </>
