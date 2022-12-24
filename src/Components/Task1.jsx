@@ -12,11 +12,21 @@ function Task1() {
   };
 
   const calculateCurrentBrackets = (str) => {
-    let stek = [];
     const leftBrackets = ["(", "{", "["];
     const rightBrackets = [")", "}", "]"];
-    let count = 0;
 
+    let stek = [];
+    let count = 0;
+    let newStr = "";
+
+    // Оставление в строке только скобок
+    for (let i = 0; i < str.length; i++) {
+      if (leftBrackets.includes(str[i]) || rightBrackets.includes(str[i]))
+        newStr += str[i];
+    }
+    str = newStr;
+
+    // Добавление/удаление в стек скобок и подсчет количества
     for (let i = 0; i < str.length; i++) {
       if (leftBrackets.includes(str[i])) {
         stek.push(str[i]);

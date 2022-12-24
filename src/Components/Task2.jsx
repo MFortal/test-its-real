@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 function Task2() {
   const [state, setState] = useState([]);
 
+  // Добавление задачи
   const addTask = () => {
     const newTask = {
       id: uuidv4(),
@@ -12,6 +13,7 @@ function Task2() {
     setState((prevState) => [...prevState, newTask]);
   };
 
+  // Получение случайного значения
   const randomInteger = (min, max) => {
     let rand = min - 0.5 + Math.random() * (max - min + 1);
     return Math.round(rand);
@@ -23,13 +25,11 @@ function Task2() {
         let newState = [];
         for (let i = 0; i < prev.length; i++) {
           if (prev[i].time < 0) continue;
-
           newState.push({
             id: prev[i].id,
             time: prev[i].time--,
           });
         }
-
         return newState;
       });
     }, 1000);
